@@ -1,0 +1,69 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class GameOverMenu : Menu
+{
+    [SerializeField] private Player _player;
+    [SerializeField] private GameStarter _gameStarter;
+    [SerializeField] private MainMenu _mainMenu;
+    [SerializeField] private Button _restartButton;
+    [SerializeField] private Button _mainMenuButton;
+    [SerializeField] private Button _exitButton;
+    [SerializeField] private Image _background;
+
+    private void OnEnable()
+    {
+        _restartButton.onClick.AddListener(RestartGame);
+        _mainMenuButton.onClick.AddListener(BackToMainMenu);
+        _exitButton.onClick.AddListener(ExitGame);
+        _player.GameOver += Open;
+    }
+
+    private void OnDisable()
+    {
+        _restartButton.onClick.RemoveListener(RestartGame);
+        _mainMenuButton.onClick.RemoveListener(BackToMainMenu);
+        _exitButton.onClick.RemoveListener(ExitGame);
+        _player.GameOver -= Open;
+    }
+
+    private void ExitGame()
+    {
+        Application.Quit();
+    }
+    
+    private void RestartGame()
+    {
+        Time.timeScale = 1;
+        Close();
+        _gameStarter.StartGame();
+    }
+
+    public override void Open()
+    {
+        Time.timeScale = 0;
+        CanvasGroup.alpha = 1;
+        _background.GetComponent<CanvasGroup>().alpha = 1;
+        _restartButton.interactable = true;
+        _mainMenuButton.interactable = true;
+        _exitButton.interactable = true;
+    }
+
+    public override void Close()
+    {
+        CanvasGroup.alpha = 0;
+        _background.GetComponent<CanvasGroup>().alpha = 0;
+        _restartButton.interactable = false;
+        _mainMenuButton.interactable = false;
+        _exitButton.interactable = false;
+    }
+
+    private void BackToMainMenu()
+    {
+        Time.timeScale = 0;
+        _mainMenu.Open();
+        Close();
+    }
+}

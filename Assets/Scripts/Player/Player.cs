@@ -6,16 +6,15 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(PlayerMover))]
 [RequireComponent(typeof(AudioSource))]
-
 public class Player : MonoBehaviour
 {
     private Animator _animator;
     private AudioSource _audioSource;
-    public event UnityAction GameOverReached;
-    public event UnityAction<int> NumberOfPickedUpCoinsChanged;
-
     private PlayerMover _playerMover;
     private int _pickedUpCoins;
+
+    public event UnityAction GameOver;
+    public event UnityAction<int> CoinsChanged;
 
     private void Awake()
     {
@@ -28,7 +27,7 @@ public class Player : MonoBehaviour
     {
         _animator.SetTrigger("Idle");
         _pickedUpCoins = 0;
-        NumberOfPickedUpCoinsChanged?.Invoke(_pickedUpCoins);
+        CoinsChanged?.Invoke(_pickedUpCoins);
         _playerMover.ResetPlayer();
     }
 
@@ -43,12 +42,11 @@ public class Player : MonoBehaviour
     {
         _pickedUpCoins++;
         _animator.SetTrigger("CoinPickup");
-        Debug.Log("Количество подобранных монет - " + _pickedUpCoins);
-        NumberOfPickedUpCoinsChanged?.Invoke(_pickedUpCoins);
+        CoinsChanged?.Invoke(_pickedUpCoins);
     }
 
     public void GameOverScreenOpen()
     {
-        GameOverReached?.Invoke();
+        GameOver?.Invoke();
     }
 }

@@ -10,12 +10,12 @@ public class PickedUpCoinsDisplay : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.NumberOfPickedUpCoinsChanged += OnNumberOfPickedUpCoinsChanged;
+        _player.CoinsChanged += OnNumberOfPickedUpCoinsChanged;
     }
 
     private void OnDisable()
     {
-        _player.NumberOfPickedUpCoinsChanged -= OnNumberOfPickedUpCoinsChanged;
+        _player.CoinsChanged -= OnNumberOfPickedUpCoinsChanged;
     }
 
     private void OnNumberOfPickedUpCoinsChanged(int pickedUpCoins)

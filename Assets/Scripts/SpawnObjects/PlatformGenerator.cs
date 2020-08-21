@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlatformGenerator : ObjectPool
 {
     [SerializeField] private List<GameObject> _templates;
-  
     [SerializeField] private List<Transform> _platformSpawnPoints = new List<Transform>();
-  
+    [SerializeField] private Platform _startPlatform;
 
-    private float _elapsedTime = 0;
+    private float _minSpawnTime = 1;
+    private float _maxSpawnTime = 2.5f;
 
     private void Start()
     {
@@ -17,40 +17,46 @@ public class PlatformGenerator : ObjectPool
         {
             Initialized(item);
         }
-
     }
 
     private void Update()
     {
-       
-        _elapsedTime += Time.deltaTime;
+        GenerateSpawnTime(_minSpawnTime, _maxSpawnTime, out float secondsBetweenSpawn);
+        Spawn(secondsBetweenSpawn);
+    }
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
+    private void Spawn(float secondsBetweenSpawn)
+    {
+        CastGeneratingRay(out RaycastHit2D hit);
 
-        Debug.DrawRay(transform.position, Vector2.down*30, Color.red);
-
-        float _secondsBetweenSpawn = Random.Range(1, 2.5f);
-
-
-        if ((!hit) && (_elapsedTime > _secondsBetweenSpawn))
+        if ((!hit) && (_elapsedTime > secondsBetweenSpawn))
         {
-            Vector3 currentPosition = transform.position;
-            currentPosition.x += 5;
-            transform.position = currentPosition;
+            ChangePositionOfGeneratingRay(5);
+
             if (TryGetObject(out GameObject platform))
             {
                 _elapsedTime = 0;
 
-                Vector3 spawnPoint = new Vector3(transform.position.x, _platformSpawnPoints[Random.Range(0,2)].position.y, transform.position.z);
-                
+                Vector3 spawnPoint = new Vector3(transform.position.x, _platformSpawnPoints[Random.Range(0, 2)].position.y, transform.position.z);
+
                 platform.SetActive(true);
-                
+
                 platform.transform.position = spawnPoint;
-                currentPosition = transform.position;
-                currentPosition.x -= 5;
-                transform.position = currentPosition;
+
+                ChangePositionOfGeneratingRay(-5);
             }
         }
-        DisableObjectAbroadScreen();
+    }
+
+    private void ChangePositionOfGeneratingRay(float amountOfChangeRayPosition)
+    {
+        Vector3 currentPosition = transform.position;
+        currentPosition.x += amountOfChangeRayPosition;
+        transform.position = currentPosition;
+    }
+
+    public void ActivateStartPlatform()
+    {
+        _startPlatform.gameObject.SetActive(true);
     }
 }

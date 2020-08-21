@@ -1,16 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class ObjectPool : MonoBehaviour
 {
     [SerializeField] private GameObject _container;
     [SerializeField] private int _capacity;
+    
 
+    public float MinSpawnTime { get; protected set; }
+    public float MaxSpawnTime { get; protected set; }
+    public float MinSpawnHeight { get; protected set; }
+    public float MaxSpawnHeight { get; protected set; }
+
+    protected float _elapsedTime = 0;
     private Camera _camera;
-
     private List<GameObject> _pool = new List<GameObject>();
+
 
     protected void Initialized(GameObject prefab)
     {
@@ -30,16 +36,16 @@ public class ObjectPool : MonoBehaviour
         List<int> numbersOfDisablePrefabs = new List<int>();
         for (int i = 0; i < _pool.Count; i++)
         {
-            if (_pool[i].activeSelf==false)
+            if (_pool[i].activeSelf == false)
             {
-                numbersOfDisablePrefabs.Add(i);   
+                numbersOfDisablePrefabs.Add(i);
             }
         }
-        result = _pool[numbersOfDisablePrefabs[Random.Range(0,numbersOfDisablePrefabs.Count)]];
-        return result!=null;
+        result = _pool[numbersOfDisablePrefabs[Random.Range(0, numbersOfDisablePrefabs.Count)]];
+        return result != null;
     }
 
-    public void  ResetPool()
+    public void ResetPool()
     {
         foreach (var item in _pool)
         {
@@ -47,19 +53,36 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    protected void DisableObjectAbroadScreen()
+    protected void GenerateSpawnTime(float minSpawnTime, float maxSpawnTime,  out float secondsBetweenSpawn)
     {
-        foreach (var item in _pool)
+        _elapsedTime += Time.deltaTime;
+        float secondsBetweenSpawnContainer = Random.Range(minSpawnTime, maxSpawnTime);
+        secondsBetweenSpawn = secondsBetweenSpawnContainer;
+    }
+
+    protected void Spawn(float minSpawnHeight, float maxSpawnHeight, float secondsBetweenSpawn)
+    {
+        CastGeneratingRay(out RaycastHit2D hit); 
+
+        if (hit && (_elapsedTime > secondsBetweenSpawn))
         {
-            if (item.activeSelf == true)
+            if (TryGetObject(out GameObject prefab))
             {
-                Vector3 point = _camera.WorldToViewportPoint(item.transform.position);
-                if ((point.x < -2.5f) || (point.y < 0))
-                {
-                    item.SetActive(false);
-                }
+                _elapsedTime = 0;
+
+                Vector3 spawnPoint = new Vector3(transform.position.x, hit.transform.position.y + Random.Range(minSpawnHeight, maxSpawnHeight), transform.position.z);
+                prefab.SetActive(true);
+                prefab.transform.position = spawnPoint;
             }
         }
     }
 
+    protected void CastGeneratingRay(out RaycastHit2D hit)
+    {
+        RaycastHit2D hitContainer = Physics2D.Raycast(transform.position, Vector2.down);
+
+        Debug.DrawRay(transform.position, Vector2.down * 30, Color.red);
+
+        hit = hitContainer;
+    }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Animator))]
-
 public class CoinCollisionHandler : MonoBehaviour
 {
     private Animator _animator;
@@ -23,6 +22,7 @@ public class CoinCollisionHandler : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Player>(out Player platform))
         {
             _animator.SetTrigger("Pickup");
+            _coinAudioPickupSound.Play();
             _sparkle.Play();
         }
 
@@ -30,10 +30,5 @@ public class CoinCollisionHandler : MonoBehaviour
         {
             transform.position += new Vector3(0, 2, 0);
         }
-    }
-
-    private void PlaySoundWhenCoinCollect()
-    {
-        _coinAudioPickupSound.Play();
     }
 }

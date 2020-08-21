@@ -2,28 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 
-public class CreditsScreen : MonoBehaviour
+public class CreditsScreen : Menu
 {
     [SerializeField] private Button _mainMenuButton;
-
-    public event UnityAction MainMenuButtonClickReached;
+    [SerializeField] private MainMenu _mainMenu;
+    [SerializeField] private Image _background;
 
     private void OnEnable()
     {
-        _mainMenuButton.onClick.AddListener(MainMenuButtonClick);
+        _mainMenuButton.onClick.AddListener(BackToMainMenu);
     }
 
     private void OnDisable()
     {
-        _mainMenuButton.onClick.RemoveListener(MainMenuButtonClick);
+        _mainMenuButton.onClick.RemoveListener(BackToMainMenu);
     }
 
-   
-
-    private void MainMenuButtonClick()
+    public override void Open()
     {
-        MainMenuButtonClickReached?.Invoke();
+        CanvasGroup.alpha = 1;
+        _background.GetComponent<CanvasGroup>().alpha = 1;
+        _mainMenuButton.interactable = true;
+    }
+
+    public override void Close()
+    {
+        CanvasGroup.alpha = 0;
+        _background.GetComponent<CanvasGroup>().alpha = 0;
+        _mainMenuButton.interactable = false;
+    }
+
+    private void BackToMainMenu()
+    {
+        Time.timeScale = 0;
+        _mainMenu.Open();
+        Close();
     }
 }
