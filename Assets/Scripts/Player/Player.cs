@@ -3,39 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(PlayerMover))]
 [RequireComponent(typeof(AudioSource))]
 public class Player : MonoBehaviour
 {
+    private PlayerMovement _movement;
     private Animator _animator;
     private AudioSource _audioSource;
-    private PlayerMover _playerMover;
+    private Rigidbody2D _rigidbody2D;
     private int _pickedUpCoins;
-
+    
     public event UnityAction GameOver;
     public event UnityAction<int> CoinsChanged;
 
-    private void Awake()
+    private void Start()
     {
-        _playerMover = GetComponent<PlayerMover>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        _movement = GetComponent<PlayerMovement>();
     }
 
     public void ResetPlayer()
     {
         _animator.SetTrigger("Idle");
         _pickedUpCoins = 0;
+        _movement.MoveToStartPosition();
         CoinsChanged?.Invoke(_pickedUpCoins);
-        _playerMover.ResetPlayer();
     }
 
     public void Die()
     {
         _animator.SetTrigger("Die");
         _audioSource.Play();
-        _playerMover.ConvulsionsAfterDeath();
+        ConvulsionsAfterDeath();
     }
 
     public void PickUpCoin()
@@ -48,5 +50,11 @@ public class Player : MonoBehaviour
     public void GameOverScreenOpen()
     {
         GameOver?.Invoke();
+    }
+
+    public void ConvulsionsAfterDeath()
+    {
+        _rigidbody2D.velocity = new Vector2(0, 20);
+        _rigidbody2D.AddForce(Vector2.up * 10, ForceMode2D.Force);
     }
 }

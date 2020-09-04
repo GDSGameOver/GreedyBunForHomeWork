@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class MainMenu : Menu
 {
+    [SerializeField] private Player _player;
+    [SerializeField] private CameraMovement _camera;
     [SerializeField] private Button _playButton;
     [SerializeField] private Button _creditsButton;
     [SerializeField] private Button _exitButton;
     [SerializeField] private CreditsScreen _creditsMenu;
-    [SerializeField] private GameStarter _gameStarter;
     [SerializeField] private Image _background;
 
     private void Start()
@@ -35,7 +36,6 @@ public class MainMenu : Menu
     {
         Time.timeScale = 1;
         Close();
-        _gameStarter.StartGame();
     }
 
     private void OpenCreditsMenu()
@@ -66,5 +66,4 @@ public class MainMenu : Menu
         _playButton.interactable = false;
         _exitButton.interactable = false;
     }
-
 }

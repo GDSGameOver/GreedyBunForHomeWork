@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class GameOverMenu : Menu
 {
+    [SerializeField] private PlatformSpawner _platformSpawner;
+    [SerializeField] private CoinSpawner _coinSpawner;
+    [SerializeField] private EnemySpawner _enemySpawner;
     [SerializeField] private Player _player;
-    [SerializeField] private GameStarter _gameStarter;
+    [SerializeField] private CameraMovement  _camera;
     [SerializeField] private MainMenu _mainMenu;
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private Button _exitButton;
     [SerializeField] private Image _background;
+
+    public event UnityAction GameOverScreenOpen;
 
     private void OnEnable()
     {
@@ -38,7 +44,6 @@ public class GameOverMenu : Menu
     {
         Time.timeScale = 1;
         Close();
-        _gameStarter.StartGame();
     }
 
     public override void Open()
@@ -49,6 +54,12 @@ public class GameOverMenu : Menu
         _restartButton.interactable = true;
         _mainMenuButton.interactable = true;
         _exitButton.interactable = true;
+        _player.ResetPlayer();
+        _camera.MoveToStartPosition();
+        _coinSpawner.ResetPool();
+        _enemySpawner.ResetPool();
+        _platformSpawner.ResetPool();
+        _platformSpawner.ActivateStartPlatform();
     }
 
     public override void Close()
