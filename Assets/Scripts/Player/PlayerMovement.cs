@@ -9,6 +9,7 @@ public class PlayerMovement : Movement
 
     private void Start()
     {
+        Rigidbody2D = GetComponent<Rigidbody2D>();
         StartPosition = new Vector3(-7.57f, -3.36f, 0);
     }
     private void Update()

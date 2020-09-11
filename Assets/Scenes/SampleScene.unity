@@ -682,8 +682,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 237976936}
-  _player: {fileID: 999382102}
-  _camera: {fileID: 519420030}
   _playButton: {fileID: 1328280154}
   _creditsButton: {fileID: 1053364638}
   _exitButton: {fileID: 975526511}
@@ -826,6 +824,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 274634794}
+  - component: {fileID: 274634796}
   - component: {fileID: 274634795}
   m_Layer: 0
   m_Name: EnemySpawner
@@ -857,13 +856,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 274634793}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ba54ad322e08614088e2c3a5955e1db, type: 3}
+  m_Script: {fileID: 11500000, guid: f8bdb2776f9b3a5488ef1e26b82c07d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _container: {fileID: 1194658798}
   _capacity: 6
+--- !u!114 &274634796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274634793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8b480f57f78e5409a910aadcfdc727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _templates:
   - {fileID: 2707437973257839138, guid: 8da68d014602fab469f2cfc997043b10, type: 3}
+  _minSpawnTime: 6
+  _maxSpawnTime: 10
+  _minSpawnHeight: 0.5
+  _maxSpawnHeight: 0.5
 --- !u!1 &290693658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1226,11 +1241,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb34cd910a920784abaad8bebef65698, type: 3}
+  m_Script: {fileID: 11500000, guid: d6ad6354d9e901049a63bc3e2cbbe77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 5
-  Rigidbody2D: {fileID: 519420034}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2205,6 +2219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 845554657}
   - component: {fileID: 845554659}
+  - component: {fileID: 845554658}
   m_Layer: 0
   m_Name: PlatformSpawner
   m_TagString: Untagged
@@ -2229,6 +2244,26 @@ Transform:
   m_Father: {fileID: 255012684}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &845554658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845554656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8b480f57f78e5409a910aadcfdc727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _templates:
+  - {fileID: 2897895977204143237, guid: 27eec1fb86c2496439fe44268b96766a, type: 3}
+  - {fileID: 5798738710254010659, guid: 96b33e62d75244245bbe4e72b6724c94, type: 3}
+  - {fileID: 2908179454609507176, guid: d6e95b8b4ec7b5344b310122b91943b2, type: 3}
+  _minSpawnTime: 1
+  _maxSpawnTime: 2.5
+  _minSpawnHeight: 0
+  _maxSpawnHeight: 0
 --- !u!114 &845554659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2243,10 +2278,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _container: {fileID: 1287799226}
   _capacity: 6
-  _templates:
-  - {fileID: 2897895977204143237, guid: 27eec1fb86c2496439fe44268b96766a, type: 3}
-  - {fileID: 5798738710254010659, guid: 96b33e62d75244245bbe4e72b6724c94, type: 3}
-  - {fileID: 2908179454609507176, guid: d6e95b8b4ec7b5344b310122b91943b2, type: 3}
   _platformSpawnPoints:
   - {fileID: 290693659}
   - {fileID: 677394430}
@@ -2262,6 +2293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 968589002}
+  - component: {fileID: 968589003}
   - component: {fileID: 968589001}
   m_Layer: 0
   m_Name: CoinSpawner
@@ -2279,13 +2311,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 968589000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 567e0e93794f93040aa06cad374da697, type: 3}
+  m_Script: {fileID: 11500000, guid: f8bdb2776f9b3a5488ef1e26b82c07d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _container: {fileID: 1865434216}
   _capacity: 20
-  _templates:
-  - {fileID: 3472547257922304825, guid: 64851169709b6a24088df0cbef7719ed, type: 3}
 --- !u!4 &968589002
 Transform:
   m_ObjectHideFlags: 0
@@ -2300,6 +2330,24 @@ Transform:
   m_Father: {fileID: 255012684}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &968589003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968589000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8b480f57f78e5409a910aadcfdc727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _templates:
+  - {fileID: 3472547257922304825, guid: 64851169709b6a24088df0cbef7719ed, type: 3}
+  _minSpawnTime: 1
+  _maxSpawnTime: 3
+  _minSpawnHeight: 1
+  _maxSpawnHeight: 3
 --- !u!1 &970438019
 GameObject:
   m_ObjectHideFlags: 0
@@ -2606,7 +2654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _container: {fileID: 1287799226}
-  _capacity: 3
+  _capacity: 32
 --- !u!4 &997711048
 Transform:
   m_ObjectHideFlags: 0
@@ -2759,7 +2807,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 5
-  Rigidbody2D: {fileID: 999382096}
   _jumpForce: 8
 --- !u!95 &999382101
 Animator:

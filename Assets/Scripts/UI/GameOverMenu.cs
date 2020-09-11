@@ -7,10 +7,10 @@ using UnityEngine.Events;
 public class GameOverMenu : Menu
 {
     [SerializeField] private PlatformSpawner _platformSpawner;
-    [SerializeField] private CoinSpawner _coinSpawner;
-    [SerializeField] private EnemySpawner _enemySpawner;
+    [SerializeField] private Spawner _coinSpawner;
+    [SerializeField] private Spawner _enemySpawner;
     [SerializeField] private Player _player;
-    [SerializeField] private CameraMovement  _camera;
+    [SerializeField] private Movement  _camera;
     [SerializeField] private MainMenu _mainMenu;
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _mainMenuButton;

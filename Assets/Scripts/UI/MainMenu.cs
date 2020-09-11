@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class MainMenu : Menu
 {
-    [SerializeField] private Player _player;
-    [SerializeField] private CameraMovement _camera;
     [SerializeField] private Button _playButton;
     [SerializeField] private Button _creditsButton;
     [SerializeField] private Button _exitButton;

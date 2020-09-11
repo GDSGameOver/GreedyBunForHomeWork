@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpawnSettings))]
 public class PlatformSpawner : Spawner
 {
-
-
-    [SerializeField] private List<GameObject> _templates;
     [SerializeField] private List<Transform> _platformSpawnPoints = new List<Transform>();
     [SerializeField] private Platform _startPlatform;
     [SerializeField] private float _amountOfChangeSpawnerPosition = 5;
+    private List<GameObject> _templates;
+    private float _minSpawnTime;
+    private float _maxSpawnTime;
 
     private void Start()
     {
+        GetSpawnSettings(ref _minSpawnTime, ref _maxSpawnTime, ref _templates);
+
         foreach (var item in _templates)
         {
             Initialized(item);
@@ -21,7 +24,7 @@ public class PlatformSpawner : Spawner
 
     private void Update()
     {
-        Spawn(GenerateSpawnTime(1, 2.5f));
+        Spawn(GenerateSpawnTime(_minSpawnTime, _maxSpawnTime));
     }
 
     protected override void Spawn(float secondsBetweenSpawn)

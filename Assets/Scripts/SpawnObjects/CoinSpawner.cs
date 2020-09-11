@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoinSpawner : Spawner
 {
-    [SerializeField] private List<GameObject> _templates;
+   [SerializeField] private List<GameObject> _templates;
 
     private void Start()
     {

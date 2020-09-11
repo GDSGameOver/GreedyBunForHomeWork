@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     private int _pickedUpCoins;
     
     public event UnityAction GameOver;
-    public event UnityAction<int> CoinsChanged;
+    public event UnityAction<int> CoinPickedUp;
 
     private void Start()
     {
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
         _animator.SetTrigger("Idle");
         _pickedUpCoins = 0;
         _movement.MoveToStartPosition();
-        CoinsChanged?.Invoke(_pickedUpCoins);
+        CoinPickedUp?.Invoke(_pickedUpCoins);
     }
 
     public void Die()
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     {
         _pickedUpCoins++;
         _animator.SetTrigger("CoinPickup");
-        CoinsChanged?.Invoke(_pickedUpCoins);
+        CoinPickedUp?.Invoke(_pickedUpCoins);
     }
 
     public void GameOverScreenOpen()
