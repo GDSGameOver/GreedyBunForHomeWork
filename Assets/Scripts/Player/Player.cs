@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private int _pickedUpCoins;
     
-    public event UnityAction GameOver;
     public event UnityAction<int> CoinPickedUp;
 
     private void Start()
@@ -25,7 +24,7 @@ public class Player : MonoBehaviour
         _movement = GetComponent<PlayerMovement>();
     }
 
-    public void ResetPlayer()
+    public void Reset()
     {
         _animator.SetTrigger("Idle");
         _pickedUpCoins = 0;
@@ -45,11 +44,6 @@ public class Player : MonoBehaviour
         _pickedUpCoins++;
         _animator.SetTrigger("CoinPickup");
         CoinPickedUp?.Invoke(_pickedUpCoins);
-    }
-
-    public void GameOverScreenOpen()
-    {
-        GameOver?.Invoke();
     }
 
     public void ConvulsionsAfterDeath()

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8337119345831306562}
   - component: {fileID: 7047900226355963748}
   - component: {fileID: 5820672295394412744}
-  - component: {fileID: 6921230949524611770}
+  - component: {fileID: 1370994190391204016}
   m_Layer: 0
   m_Name: SmallPlatform
   m_TagString: Untagged
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bb7986dece23f34fb453a2ddb5ac15c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &6921230949524611770
+--- !u!61 &1370994190391204016
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,10 +130,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 5.765, y: -0.8}
+  m_Offset: {x: 5.765, y: 0.8}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 1}
+    pivot: {x: 0, y: 0}
     oldSize: {x: 11.53, y: 1.6}
     newSize: {x: 3.85, y: 1.6}
     adaptiveTilingThreshold: 0.5

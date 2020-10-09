@@ -4,34 +4,20 @@ using UnityEngine;
 
 public class SpawnSettings : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _templates;
-    [SerializeField] private float _minSpawnTime;
-    [SerializeField] private float _maxSpawnTime;
-    [SerializeField] private float _minSpawnHeight;
-    [SerializeField] private float _maxSpawnHeight;
+    private List<GameObject> _templates;
+    private float _minSpawnTime;
+    private float _maxSpawnTime;
+    private float _minSpawnHeight;
+    private float _maxSpawnHeight;
 
-    public float GetMinSpawnTime()
+    public SpawnSettings GetSettings(List<GameObject> templates, float minSpawnTime, float maxSpawnTime, float minSpawnHeight, float maxSpawnHeight)
     {
-        return _minSpawnTime;
+        SpawnSettings spawnSettings = new SpawnSettings();
+        spawnSettings._minSpawnTime = minSpawnTime;
+        spawnSettings._maxSpawnTime = maxSpawnTime;
+        spawnSettings._minSpawnHeight = minSpawnHeight;
+        spawnSettings._maxSpawnHeight = maxSpawnHeight;
+        spawnSettings._templates = templates;
+        return spawnSettings;
     }
-
-    public float GetMaxSpawnTime()
-    {
-        return _maxSpawnTime;
-    }
-
-    public float GetMinSpawnHeight()
-    {
-        return _minSpawnHeight;
-    }
-
-    public float GetMaxSpawnHeight()
-    {
-        return _maxSpawnHeight;
-    }
-    public List<GameObject> GetTemplates()
-    {
-        return _templates;
-    }
-
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _speed;
     public Rigidbody2D Rigidbody2D { get; protected set; }
     public Vector3 StartPosition { get; protected set; }
 
@@ -23,7 +23,7 @@ public class Movement : MonoBehaviour
 
     protected void Move()
     {
-        Rigidbody2D.velocity = new Vector2(_moveSpeed, Rigidbody2D.velocity.y);
+        Rigidbody2D.velocity = new Vector2(_speed, Rigidbody2D.velocity.y);
     }
 
     public Vector3 GetStartPosition()

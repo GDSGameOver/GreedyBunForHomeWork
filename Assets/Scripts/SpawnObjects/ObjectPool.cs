@@ -7,23 +7,19 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] private GameObject _container;
     [SerializeField] private int _capacity;
 
-    protected float _elapsedTime = 0;
     private List<GameObject> _pool = new List<GameObject>();
 
-
-    protected void Initialized(GameObject prefab)
+    public void Initialized(GameObject prefab)
     {
-
         for (int i = 0; i < _capacity; i++)
         {
             GameObject spawned = Instantiate(prefab, _container.transform);
             spawned.SetActive(false);
-
             _pool.Add(spawned);
         }
     }
 
-    protected bool TryGetObject(out GameObject result)
+    public bool TryGetObject(out GameObject result)
     {
         List<int> numbersOfDisablePrefabs = new List<int>();
         for (int i = 0; i < _pool.Count; i++)
@@ -35,6 +31,15 @@ public class ObjectPool : MonoBehaviour
         }
         result = _pool[numbersOfDisablePrefabs[Random.Range(0, numbersOfDisablePrefabs.Count)]];
         return result != null;
+    }
+
+    public ObjectPool GetPool(int capacity, GameObject container, string name)
+    {
+        ObjectPool objectPool = new ObjectPool();
+        objectPool._capacity = capacity;
+        objectPool._container = container;
+        objectPool._container.name = name;
+        return objectPool;
     }
 
     public void ResetPool()
