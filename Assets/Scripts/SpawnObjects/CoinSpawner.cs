@@ -43,9 +43,10 @@ public class CoinSpawner : SpawnStrategy
         MinSpawnHeight = 2;
         MaxSpawnHeight = 4;
         Capacity = 20;
+        Templates = _templates;
         Name = "CoinPool";
         _coinPool = GetPool(_coinPool, Capacity, Name);
-        foreach (var item in _templates)
+        foreach (var item in Templates)
         {
             _coinPool.Initialized(item);
         }

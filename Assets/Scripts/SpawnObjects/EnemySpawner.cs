@@ -6,7 +6,7 @@ public class EnemySpawner : SpawnStrategy
 {
     [SerializeField] private List<GameObject> _templates;
 
-    ObjectPool _enemyPool = new ObjectPool();
+    private ObjectPool _enemyPool = new ObjectPool();
 
     public override void Spawn(float secondsBetweenSpawn,  ref float elapsedTime)
     {
