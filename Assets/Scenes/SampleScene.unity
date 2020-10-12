@@ -1321,6 +1321,7 @@ GameObject:
   - component: {fileID: 535311094}
   - component: {fileID: 535311093}
   - component: {fileID: 535311097}
+  - component: {fileID: 535311098}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1423,13 +1424,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5714456939286014bb2ce5b1025e11cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _platformSpawner: {fileID: 845554659}
-  _coinSpawner: {fileID: 968589001}
-  _enemySpawner: {fileID: 274634795}
+  _spawningStrategy: {fileID: 535311098}
   _player: {fileID: 999382102}
   _camera: {fileID: 519420030}
   _gameOverMenu: {fileID: 1321347055}
   _endGameTrigger: {fileID: 999382103}
+--- !u!114 &535311098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535311092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a7f7474a2b7a6f4d9a437fd4395cd2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &574655642
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,11 +2272,11 @@ MonoBehaviour:
   - {fileID: 677394430}
   - {fileID: 1333547178}
   _startPlatform: {fileID: 1608229578}
-  _distanceBetweenPlatforms: 5
+  _distanceBetweenPlatforms: 3
   _templates:
-  - {fileID: 2908179454609507176, guid: d6e95b8b4ec7b5344b310122b91943b2, type: 3}
-  - {fileID: 5798738710254010659, guid: 96b33e62d75244245bbe4e72b6724c94, type: 3}
   - {fileID: 2897895977204143237, guid: 27eec1fb86c2496439fe44268b96766a, type: 3}
+  - {fileID: 5798738710254010659, guid: 96b33e62d75244245bbe4e72b6724c94, type: 3}
+  - {fileID: 2908179454609507176, guid: d6e95b8b4ec7b5344b310122b91943b2, type: 3}
 --- !u!1 &968589000
 GameObject:
   m_ObjectHideFlags: 0

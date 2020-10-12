@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     {
         _animator.SetTrigger("Idle");
         _pickedUpCoins = 0;
-        _movement.MoveToStartPosition();
+        _movement.Reset();
         CoinPickedUp?.Invoke(_pickedUpCoins);
     }
 

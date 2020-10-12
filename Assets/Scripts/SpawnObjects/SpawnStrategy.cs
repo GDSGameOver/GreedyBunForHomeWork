@@ -4,11 +4,13 @@ using UnityEngine;
 
 public abstract class SpawnStrategy : MonoBehaviour
 {
-    protected float GenerateSpawnTime(float minSpawnTime, float maxSpawnTime)
-    {
-        float secondsBetweenSpawn = Random.Range(minSpawnTime, maxSpawnTime);
-        return secondsBetweenSpawn;
-    }
+    public List<GameObject> Templates { get; protected set; }
+    public float MinSpawnTime { get; protected set; }
+    public float MaxSpawnTime { get; protected set; }
+    public float MinSpawnHeight { get; protected set; }
+    public float MaxSpawnHeight { get; protected set; }
+    public int Capacity { get; protected set; }
+    public string Name { get; protected set; }
 
     protected ObjectPool GetPool(ObjectPool pool, int capacity, string name)
     {
@@ -17,12 +19,9 @@ public abstract class SpawnStrategy : MonoBehaviour
         return pool;
     }
 
-    protected SpawnSettings GetSettings(SpawnSettings settings, List<GameObject> templates, float minSpawnTime, float maxSpawnTime, float minSpawnHeight, float maxSpawnHeight )
-    {
-        SpawnSettings spawnSettings = new SpawnSettings();
-        settings = spawnSettings.GetSettings(templates, minSpawnTime, maxSpawnTime, minSpawnHeight, maxSpawnHeight);
-        return settings;
-    }
+    public abstract void Spawn(float secondsBetweenSpawn, ref float elapsedTime);
 
-    protected abstract void Spawn(float secondsBetweenSpawn);
+    public abstract void Reset();
+
+    public abstract void Initialized();
 }

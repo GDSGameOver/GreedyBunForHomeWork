@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour
         StartPosition = new Vector3(0, 0, -10);
     }
 
-    public void MoveToStartPosition()
+    public void Reset()
     {
         transform.position = StartPosition;
         Rigidbody2D.velocity = Vector2.zero;
