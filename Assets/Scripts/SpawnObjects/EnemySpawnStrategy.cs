@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : SpawnStrategy
+public class EnemySpawnStrategy : SpawnStrategy
 {
     [SerializeField] private List<GameObject> _templates;
 

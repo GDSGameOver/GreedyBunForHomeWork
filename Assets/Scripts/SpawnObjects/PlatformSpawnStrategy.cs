@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformSpawner : SpawnStrategy
+public class PlatformSpawnStrategy : SpawnStrategy
 {
     [SerializeField] private List<Transform> _platformSpawnPoints = new List<Transform>();
     [SerializeField] private Platform _startPlatform;

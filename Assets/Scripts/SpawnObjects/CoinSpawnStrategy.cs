@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinSpawner : SpawnStrategy
+public class CoinSpawnStrategy : SpawnStrategy
 {
     [SerializeField] private LayerMask _bannedLayerForSpawn;
     [SerializeField] private List<GameObject> _templates;
