@@ -19,16 +19,11 @@ public class CoinCollisionHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Player>(out Player platform))
+        if (collision.gameObject.TryGetComponent<Player>(out Player player))
         {
             _animator.SetTrigger("Pickup");
             _coinAudioPickupSound.Play();
             _sparkle.Play();
-        }
-
-        if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
-        {
-            transform.position += new Vector3(0, 2, 0);
         }
     }
 }

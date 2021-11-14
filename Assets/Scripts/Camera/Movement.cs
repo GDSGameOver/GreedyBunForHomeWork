@@ -6,33 +6,20 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    public Rigidbody2D Rigidbody2D { get; protected set; }
-    public Vector3 StartPosition { get; protected set; }
+    private Rigidbody2D _rigidbody;
 
-    private void Start()
+    private void Awake()
     {
-        Rigidbody2D = GetComponent<Rigidbody2D>();
-        StartPosition = new Vector3(0, 0, -10);
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    public void Reset()
+    protected void Move(Rigidbody2D rigidbody)
     {
-        transform.position = StartPosition;
-        Rigidbody2D.velocity = Vector2.zero;
-    }
-
-    protected void Move()
-    {
-        Rigidbody2D.velocity = new Vector2(_speed, Rigidbody2D.velocity.y);
-    }
-
-    public Vector3 GetStartPosition()
-    {
-        return StartPosition;
+        rigidbody.velocity = new Vector2(_speed, rigidbody.velocity.y);
     }
 
     private void Update()
     {
-        Move();
+        Move(_rigidbody);
     }
 }

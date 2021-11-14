@@ -5,14 +5,13 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] private Movement _camera;
+    [SerializeField] private MainCamera _camera;
     [SerializeField] private GameOverMenu _gameOverMenu;
+    [SerializeField] private LevelGenerator _levelGenerator;
     [SerializeField] private PlayerCollisionHandler _endGameTrigger;
-    private Spawner _spawners  = new Spawner();
 
     private void OnEnable()
     {
-        _spawners = FindObjectOfType<Spawner>();
         _endGameTrigger.GameEnded += Reset;
     }
 
@@ -23,9 +22,9 @@ public class Game : MonoBehaviour
 
     private void Reset()
     {
+        _levelGenerator.Reset();
         _player.Reset();
-        _camera.Reset();
+        _camera.transform.position = _camera.StartPosition;
         _gameOverMenu.Open();
-        _spawners.Reset();
     }
 }

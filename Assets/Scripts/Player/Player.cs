@@ -3,32 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
 public class Player : MonoBehaviour
 {
-    private PlayerMovement _movement;
+    [SerializeField] private Vector3 _startPosition;
+
     private Animator _animator;
     private AudioSource _audioSource;
-    private Rigidbody2D _rigidbody2D;
+    private Rigidbody2D _rigidbody;
     private int _pickedUpCoins;
     
     public event UnityAction<int> CoinPickedUp;
 
     private void Start()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
-        _movement = GetComponent<PlayerMovement>();
     }
 
     public void Reset()
     {
         _animator.SetTrigger("Idle");
         _pickedUpCoins = 0;
-        _movement.Reset();
+        transform.position = _startPosition;
+        _rigidbody.velocity = Vector2.zero;
         CoinPickedUp?.Invoke(_pickedUpCoins);
     }
 
@@ -36,7 +37,6 @@ public class Player : MonoBehaviour
     {
         _animator.SetTrigger("Die");
         _audioSource.Play();
-        ConvulsionsAfterDeath();
     }
 
     public void PickUpCoin()
@@ -44,11 +44,5 @@ public class Player : MonoBehaviour
         _pickedUpCoins++;
         _animator.SetTrigger("CoinPickup");
         CoinPickedUp?.Invoke(_pickedUpCoins);
-    }
-
-    public void ConvulsionsAfterDeath()
-    {
-        _rigidbody2D.velocity = new Vector2(0, 20);
-        _rigidbody2D.AddForce(Vector2.up * 10, ForceMode2D.Force);
     }
 }

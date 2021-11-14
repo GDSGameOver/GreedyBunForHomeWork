@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 8337119345831306562}
   - component: {fileID: 7047900226355963748}
   - component: {fileID: 5820672295394412744}
-  - component: {fileID: 1370994190391204016}
-  m_Layer: 0
+  - component: {fileID: -5117519293443828152}
+  - component: {fileID: 1872588850287440830}
+  m_Layer: 9
   m_Name: SmallPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2908179454609507176}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.57, y: -4.506, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.96783745, y: 0.61682975, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -117,7 +118,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bb7986dece23f34fb453a2ddb5ac15c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &1370994190391204016
+--- !u!114 &-5117519293443828152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2908179454609507176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5abe9ecb00ff7054a924777e23f2c6ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _chanceToSpawn: 100
+  _amountInPool: 10
+  _overlapArea: {x: 0, y: 20}
+  _offsetPositions:
+  - {x: 0, y: 4, z: 0}
+  - {x: 0, y: 5, z: 0}
+  - {x: 0, y: 6, z: 0}
+  _layer: 0
+  _bannedLayersForSpawn:
+    serializedVersion: 2
+    m_Bits: 3584
+--- !u!61 &1872588850287440830
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

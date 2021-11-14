@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 3896168467227605222}
   - component: {fileID: 1756336594062306978}
   - component: {fileID: 1366550076934178429}
-  - component: {fileID: 1864149510436542717}
-  - component: {fileID: 7785624870560730282}
-  m_Layer: 0
+  - component: {fileID: 9019388500298924040}
+  - component: {fileID: 3319222566877961063}
+  - component: {fileID: 8769412553097561114}
+  m_Layer: 9
   m_Name: MediumPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5798738710254010659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.33, y: -4.506, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.96783745, y: 0.61682975, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -105,7 +106,30 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1864149510436542717
+--- !u!114 &9019388500298924040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798738710254010659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5abe9ecb00ff7054a924777e23f2c6ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _chanceToSpawn: 100
+  _amountInPool: 10
+  _overlapArea: {x: 0, y: 20}
+  _offsetPositions:
+  - {x: 0, y: 4, z: 0}
+  - {x: 0, y: 5, z: 0}
+  - {x: 0, y: 6, z: 0}
+  _layer: 0
+  _bannedLayersForSpawn:
+    serializedVersion: 2
+    m_Bits: 3584
+--- !u!114 &3319222566877961063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bb7986dece23f34fb453a2ddb5ac15c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &7785624870560730282
+--- !u!61 &8769412553097561114
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

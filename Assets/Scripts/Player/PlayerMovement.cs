@@ -5,24 +5,26 @@ using UnityEngine;
 public class PlayerMovement : Movement
 {
     [SerializeField] private float _jumpForce;
+    private Rigidbody2D _rigidbody;
     private bool _isGround;
 
-    private void Start()
+
+    private void Awake()
     {
-        Rigidbody2D = GetComponent<Rigidbody2D>();
-        StartPosition = new Vector3(-7.57f, -3.36f, 0);
-    }
-    private void Update()
-    {
-        Move();
-        Jump();
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void Jump()
+    private void Update()
+    {
+        Move(_rigidbody);
+        Jump(_rigidbody);
+    }
+
+    private void Jump(Rigidbody2D rigidbody)
     {
         if (Input.GetKeyDown(KeyCode.Space) && _isGround)
         {
-            Rigidbody2D.velocity = new Vector2(Rigidbody2D.velocity.x, _jumpForce);
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, _jumpForce);
             _isGround = false;
         }
     }
