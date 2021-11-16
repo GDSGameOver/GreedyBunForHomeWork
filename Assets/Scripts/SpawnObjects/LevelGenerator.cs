@@ -10,8 +10,6 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private Template[] _templates;
 
     private List<Template> _pool = new List<Template>();
-
-
     private void Start()
     {
         InitializePool();

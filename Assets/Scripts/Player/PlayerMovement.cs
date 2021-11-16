@@ -8,7 +8,6 @@ public class PlayerMovement : Movement
     private Rigidbody2D _rigidbody;
     private bool _isGround;
 
-
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -28,9 +27,10 @@ public class PlayerMovement : Movement
             _isGround = false;
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Platform>(out Platform platform))
+        if (collision.gameObject.TryGetComponent(out Platform platform))
         {
             _isGround = true;
         }
