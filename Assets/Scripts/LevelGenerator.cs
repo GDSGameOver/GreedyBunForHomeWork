@@ -10,7 +10,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private float _viewRadius;
     [SerializeField] private float _cellSize;
 
-    private HashSet<Vector3Int> _collisionsMatrix = new HashSet<Vector3Int>();
+    private HashSet<Vector2Int> _collisionsMatrix = new HashSet<Vector2Int>();
     private List<GridObject> _pool = new List<GridObject>();
 
     private void Start()
@@ -23,19 +23,19 @@ public class LevelGenerator : MonoBehaviour
         FillRadius(transform.position, _viewRadius);
     }
 
-    private void FillRadius(Vector3 center, float viewRadius)
+    private void FillRadius(Vector2 center, float viewRadius)
     {
         var cellCountOnAxis = (int)(viewRadius / _cellSize);
         var fillAreaCenter = WorldToGridPosition(center);
 
         for (int x = -cellCountOnAxis; x < cellCountOnAxis; x++)
         {
-                TryCreateOnLayer(GridLayer.Ground, fillAreaCenter + new Vector3Int(x, 0, 0), _pool);
-                TryCreateOnLayer(GridLayer.OnGround, fillAreaCenter + new Vector3Int(x, 0, 0), _pool);
+                TryCreateRandomObjectOnLayer(GridLayer.Ground, fillAreaCenter + new Vector2Int(x, 0), _pool);
+                TryCreateRandomObjectOnLayer(GridLayer.OnGround, fillAreaCenter + new Vector2Int(x, 0), _pool);
         }
     }
 
-    private void TryCreateOnLayer(GridLayer layer, Vector3Int gridPosition, List<GridObject> pool)
+    private void TryCreateRandomObjectOnLayer(GridLayer layer, Vector2Int gridPosition, List<GridObject> pool)
     {
         gridPosition.y = (int)layer;
 
@@ -88,7 +88,7 @@ public class LevelGenerator : MonoBehaviour
 
     public void Reset()
     {
-        _collisionsMatrix = new HashSet<Vector3Int>();
+        _collisionsMatrix = new HashSet<Vector2Int>();
         _startPlatform.gameObject.SetActive(true);
         foreach (var template in _pool)
         {
@@ -96,19 +96,19 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    private Vector3 GridToWorldPosition(Vector3Int gridPosition)
+    private Vector2 GridToWorldPosition(Vector2Int gridPosition)
     {
-        return new Vector3(
+        return new Vector2(
             gridPosition.x * _cellSize,
-            gridPosition.y * _cellSize,
-            gridPosition.z * _cellSize);
+            gridPosition.y * _cellSize);
+          //  gridPosition.z * _cellSize);
     }
 
-    private Vector3Int WorldToGridPosition(Vector3 worldPosition)
+    private Vector2Int WorldToGridPosition(Vector2 worldPosition)
     {
-        return new Vector3Int(
+        return new Vector2Int(
             (int)(worldPosition.x / _cellSize),
-            (int)(worldPosition.y / _cellSize),
-            (int)(worldPosition.z / _cellSize));
+            (int)(worldPosition.y / _cellSize));
+           // (int)(worldPosition.z / _cellSize));
     }
 }
