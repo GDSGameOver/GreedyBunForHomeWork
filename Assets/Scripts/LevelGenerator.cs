@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    [SerializeField] GridObject[] _templates;
+    [SerializeField] private GridObject[] _templates;
     [SerializeField] private Platform _startPlatform;
     [SerializeField] private float _viewRadius;
     [SerializeField] private float _cellSize;
