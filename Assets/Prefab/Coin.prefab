@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8709436001602325026}
   - component: {fileID: 449774270}
   - component: {fileID: 1157143089034366696}
-  - component: {fileID: -4371293292670514177}
+  - component: {fileID: 7328287122431905755}
   m_Layer: 11
   m_Name: Coin
   m_TagString: Untagged
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1565d6633aa61541859f9dee586c4db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-4371293292670514177
+--- !u!114 &7328287122431905755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -284,20 +284,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3472547257922304825}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5abe9ecb00ff7054a924777e23f2c6ea, type: 3}
+  m_Script: {fileID: 11500000, guid: e233f116acf68434f80cb4b087a081fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chanceToSpawn: 80
-  _amountInPool: 50
-  _overlapArea: {x: 5, y: 2}
-  _offsetPositions:
-  - {x: 0, y: 1, z: 0}
-  - {x: 0, y: 2, z: 0}
-  - {x: 0, y: 4, z: 0}
   _layer: 1
-  _bannedLayersForSpawn:
-    serializedVersion: 2
-    m_Bits: 7168
+  _chance: 1
+  _amountInPool: 100
 --- !u!1001 &355811821
 PrefabInstance:
   m_ObjectHideFlags: 0
