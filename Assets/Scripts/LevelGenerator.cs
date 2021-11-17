@@ -101,7 +101,6 @@ public class LevelGenerator : MonoBehaviour
         return new Vector2(
             gridPosition.x * _cellSize,
             gridPosition.y * _cellSize);
-          //  gridPosition.z * _cellSize);
     }
 
     private Vector2Int WorldToGridPosition(Vector2 worldPosition)
@@ -109,6 +108,5 @@ public class LevelGenerator : MonoBehaviour
         return new Vector2Int(
             (int)(worldPosition.x / _cellSize),
             (int)(worldPosition.y / _cellSize));
-           // (int)(worldPosition.z / _cellSize));
     }
 }

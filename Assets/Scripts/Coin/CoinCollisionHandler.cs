@@ -7,13 +7,13 @@ using UnityEngine;
 public class CoinCollisionHandler : MonoBehaviour
 {
     private Animator _animator;
-    private AudioSource _coinAudioPickupSound;
+    private AudioSource _pickupSound;
     private ParticleSystem _sparkle;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _coinAudioPickupSound = GetComponent<AudioSource>();
+        _pickupSound = GetComponent<AudioSource>();
         _sparkle = GetComponentInChildren<ParticleSystem>();
     }
 
@@ -22,7 +22,7 @@ public class CoinCollisionHandler : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Player player))
         {
             _animator.SetTrigger("Pickup");
-            _coinAudioPickupSound.Play();
+            _pickupSound.Play();
             _sparkle.Play();
         }
     }
