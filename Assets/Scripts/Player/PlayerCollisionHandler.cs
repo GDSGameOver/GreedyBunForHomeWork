@@ -24,7 +24,7 @@ public class PlayerCollisionHandler : MonoBehaviour
 
         if (collision.TryGetComponent(out Enemy enemy)) 
         {
-            _player.Die();
+            _player.PlayerDie();
             GameEnded?.Invoke();
         }
     }

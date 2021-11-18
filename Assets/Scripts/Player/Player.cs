@@ -10,11 +10,15 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Vector3 _startPosition;
 
+    private const string Idle = "Idle";
+    private const string Die = "Die";
+    private const string CoinPickup = "CoinPickup";
+
     private Animator _animator;
     private AudioSource _audioSource;
     private Rigidbody2D _rigidbody;
     private int _pickedUpCoins;
-    
+
     public event UnityAction<int> CoinPickedUp;
 
     private void Start()
@@ -26,23 +30,23 @@ public class Player : MonoBehaviour
 
     public void Reset()
     {
-        _animator.SetTrigger("Idle");
+        _animator.SetTrigger(Idle);
         _pickedUpCoins = 0;
         transform.position = _startPosition;
         _rigidbody.velocity = Vector2.zero;
         CoinPickedUp?.Invoke(_pickedUpCoins);
     }
 
-    public void Die()
+    public void PlayerDie()
     {
-        _animator.SetTrigger("Die");
+        _animator.SetTrigger(Die);
         _audioSource.Play();
     }
 
     public void PickUpCoin()
     {
         _pickedUpCoins++;
-        _animator.SetTrigger("CoinPickup");
+        _animator.SetTrigger(CoinPickup);
         CoinPickedUp?.Invoke(_pickedUpCoins);
     }
 }

@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class CoinCollisionHandler : MonoBehaviour
 {
+    private const string Pickup = "Pickup";
+    
     private Animator _animator;
     private AudioSource _pickupSound;
     private ParticleSystem _sparkle;
@@ -21,7 +23,7 @@ public class CoinCollisionHandler : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Player player))
         {
-            _animator.SetTrigger("Pickup");
+            _animator.SetTrigger(Pickup);
             _pickupSound.Play();
             _sparkle.Play();
         }
